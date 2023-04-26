@@ -8,16 +8,24 @@ import Feather from 'react-native-vector-icons/Feather'
 import styles from './FeedPostStyles'
 import Comment from "../Comment";
 import comment from "../Comment/comment";
+import { Component } from "react";
+import { IPost } from "../../types/models";
 
+// if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
+// interface IFeedPost {
+//     post:{
+//         id:string;
+//         images:string;
+//         description: string;
+//         user:{
+//             username:string;
+//         }
+//     }
+// }
+
+//Here we are importing type from one generic page
 interface IFeedPost {
-    post:{
-        id:string;
-        images:string;
-        description: string;
-        user:{
-            username:string;
-        }
-    }
+  post:IPost
 }
 
 // const FeedPost = (props) =>{
