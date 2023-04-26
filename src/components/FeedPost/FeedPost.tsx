@@ -60,7 +60,7 @@ const FeedPost = ({post}: IFeedPost) =>{
         
           <Image 
           source={{
-            uri: post.images
+            uri: post.image
           }}
           style={styles.image}
           />
@@ -77,7 +77,7 @@ const FeedPost = ({post}: IFeedPost) =>{
           {/* Likes */}
         <Text style={styles.text}>
           Liked by{' '} 
-          <Text style={styles.bold}>akshay_5073_travel{' '}</Text>
+          <Text style={styles.bold}>{post.comments[0].user.username}{' '}</Text>
            and{' '}
            <Text style={styles.bold}>{post.nofLikes} others.</Text>
         </Text>
