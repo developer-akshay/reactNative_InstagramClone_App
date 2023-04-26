@@ -1,4 +1,4 @@
-import { StyleSheet, View,SafeAreaView,ScrollView } from "react-native";
+import { StyleSheet, View,SafeAreaView,ScrollView, FlatList } from "react-native";
 import FeedPost from "./src/components/FeedPost";
 import posts from './src/assets/data/posts.json'
 
@@ -40,13 +40,46 @@ const App = () =>{
   return <View style={styles.app}>
     <SafeAreaView>
     <ScrollView>
-      {/* if the array is of short length then only we use map otherwise we will have different approach */}
-    {posts.map(postArr=>(
+      {/* if the array is of short length then only we use map otherwise we will have different approach Flatlist */}
+    {/* {posts.map(postArr=>(
       <FeedPost key={postArr.id} post={postArr}/>
-    ))}   
+    ))}    */}
+    <FlatList 
+    data={posts}
+    
+    // incase we don't have id or key element at the data so we need to use keyextracter and mention the key here
+    // Here we are creating a unique key by concatinating post-
+    // keyExtractor={(item)=>{
+    //   (`post-${item.createdAt}`)
+    // }}
+
+    // if we don't do destructring here then you have to write extra word at renderitems
+    // renderItem={(data)=> <FeedPost post={DataView.item}/> }
+    renderItem={({item})=> <FeedPost post={item}/> }
+    showsVerticalScrollIndicator={false}
+    />
+
 
     </ScrollView>
     </SafeAreaView>
+
+    {/* Here we are using flatlist inside scrollview so it will create problem like flatlist can't use the  window function like screenlength 
+    so to resolve it we use ListHeaderComponent AND ListFooterComponent
+      For ref
+      <FlatList
+      ListHeaderComponent={
+      <>
+        <CoverPhoto src={images[0]} />
+        <Title>Welcome</Title>
+        <Text>Take a look at the list of recipes below:</Text>
+      </>}
+      data={recipes}
+      renderItem={renderItem}
+      ListFooterComponent={
+        <Footer/>
+      }/> */}
+
+
   </View>
 }
 
