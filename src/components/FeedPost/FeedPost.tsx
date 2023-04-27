@@ -8,6 +8,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import styles from './FeedPostStyles'
 import Comment from "../Comment";
 import { IPost } from "../../types/models";
+import DoublePressable from '../DoublePressable';
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
 // interface IFeedPost {
@@ -97,14 +98,16 @@ const FeedPost = ({post}: IFeedPost) =>{
         </View>
 
       {/*content */}
-        <Pressable onPress={handleDoublePress}>
+        {/* <Pressable onPress={handleDoublePress}> */}
+        <DoublePressable onDoublePress={toggleLike}>
           <Image 
           source={{
             uri: post.image
           }}
           style={styles.image}
           />
-        </Pressable>
+          </DoublePressable>
+        {/* </Pressable> */}
       {/*Footer */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
