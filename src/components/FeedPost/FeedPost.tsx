@@ -99,6 +99,9 @@ const FeedPost = ({post}: IFeedPost) =>{
 
       {/*content */}
         {/* <Pressable onPress={handleDoublePress}> */}
+
+        {/* Here to pass everything between our DoublePressable component is through ReactNode children property which can 
+        be passed to our custom component at props  */}
         <DoublePressable onDoublePress={toggleLike}>
           <Image 
           source={{
