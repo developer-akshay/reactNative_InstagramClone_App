@@ -62,6 +62,17 @@ const FeedPost = ({post}: IFeedPost) =>{
       setIsLiked(v=>!v)
     } 
 
+    //Function for liking post by double clicking at image
+    let lastTap=0;
+
+    const handleDoublePress = () =>{
+      const now=Date.now()
+      if(now-lastTap<300){
+        toggleLike()
+      }
+      lastTap=now;
+    }
+
   return (
   
     <View style={styles.post}>
@@ -70,6 +81,7 @@ const FeedPost = ({post}: IFeedPost) =>{
 
         <View style={styles.header}>
           {/* avatar */}
+          
           <Image
           source={{
             uri: post.user.image
@@ -85,13 +97,14 @@ const FeedPost = ({post}: IFeedPost) =>{
         </View>
 
       {/*content */}
-        
+        <Pressable onPress={handleDoublePress}>
           <Image 
           source={{
             uri: post.image
           }}
           style={styles.image}
           />
+        </Pressable>
       {/*Footer */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
