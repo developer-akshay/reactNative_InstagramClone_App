@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Text, View, Image } from "react-native";
+import {Text, View, Image, Pressable } from "react-native";
 import colors from "../../theme/colors";
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -38,6 +38,7 @@ const FeedPost = ({post}: IFeedPost) =>{
 
     // WE SHOULD USE SETTER function to change state of variables like this
     const [isDescriptionExpanded,setIsDescriptionExpanded] = useState(false);
+    const [isLiked,setIsLiked] = useState(false);
 
     const toggleDescriptionExpanded = () =>{
       //It's WRONG WAY
@@ -56,8 +57,10 @@ const FeedPost = ({post}: IFeedPost) =>{
 
       //This will work same as above
       setIsDescriptionExpanded(v=>!v)
-
     }
+    const toggleLike = () => {
+      setIsLiked(v=>!v)
+    } 
 
   return (
   
@@ -92,7 +95,13 @@ const FeedPost = ({post}: IFeedPost) =>{
       {/*Footer */}
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
-            <AntDesign name={'hearto'} size={24} style={styles.icon} color={colors.black}/>
+          <Pressable onPress={toggleLike}>
+            <AntDesign 
+            name={isLiked?'heart':'hearto'} 
+            size={24} style={styles.icon} 
+            color={isLiked? colors.red:colors.black}
+            />
+          </Pressable>
             <Ionicons name='chatbubble-outline' size={24} style={styles.icon} color={colors.black}/>
             <Feather name='send' size={24} style={styles.icon} color={colors.black}/>
 
@@ -112,7 +121,7 @@ const FeedPost = ({post}: IFeedPost) =>{
           <Text style={styles.bold}>{post.user.username}</Text>
           {' '}{post.description}
         </Text>
-        <Text onPress={toggleDescriptionExpanded}>{isDescriptionExpanded?'Show less':'Show more'}</Text>
+        <Text style={styles.text} onPress={toggleDescriptionExpanded}>{isDescriptionExpanded?'Show less':'Show more'}</Text>
         {/* comment section */}
         <Text style={styles.text}>View all {post.nofComments} comments</Text>
         {post.comments.map(comment=>(
