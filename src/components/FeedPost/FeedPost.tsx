@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View, Image, ScrollView,SafeAreaView } from "react-native";
+import {useState} from 'react';
+import {Text, View, Image } from "react-native";
 import colors from "../../theme/colors";
-import fonts from "../../theme/fonts";
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import styles from './FeedPostStyles'
 import Comment from "../Comment";
-import comment from "../Comment/comment";
-import { Component } from "react";
 import { IPost } from "../../types/models";
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
@@ -33,6 +31,33 @@ interface IFeedPost {
 const FeedPost = ({post}: IFeedPost) =>{
     console.log('props',post);
     
+     //it will return array of two value bydefault we have given false so it will be 0
+    // const state =useState(false)
+    // const isDescriptionExpanded =state[0]
+    // isDescriptionExpanded=true  This is wrong way to change values 
+
+    // WE SHOULD USE SETTER function to change state of variables like this
+    const [isDescriptionExpanded,setIsDescriptionExpanded] = useState(false);
+
+    const toggleDescriptionExpanded = () =>{
+      //It's WRONG WAY
+      // to update state because if user clicks multiple times it will override the value at state and will
+      // not remember the previous state 
+
+      // setIsDescriptionExpanded(!isDescriptionExpanded);
+
+      //CORRECT WAY
+      // By this way it will change state based on previous state, so if user clicks multiple times it will function properly
+
+      //We can do it like this also 
+      // setIsDescriptionExpanded((exsitingValue)=>{ 
+      //   return !exsitingValue;
+      // })
+
+      //This will work same as above
+      setIsDescriptionExpanded(v=>!v)
+
+    }
 
   return (
   
@@ -83,10 +108,11 @@ const FeedPost = ({post}: IFeedPost) =>{
         </Text>
 
         {/* Post description */}
-        <Text  style={styles.text}>
+        <Text  style={styles.text} numberOfLines={isDescriptionExpanded ? 0 :3}>
           <Text style={styles.bold}>{post.user.username}</Text>
           {' '}{post.description}
         </Text>
+        <Text onPress={toggleDescriptionExpanded}>{isDescriptionExpanded?'Show less':'Show more'}</Text>
         {/* comment section */}
         <Text style={styles.text}>View all {post.nofComments} comments</Text>
         {post.comments.map(comment=>(
