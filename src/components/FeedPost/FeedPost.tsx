@@ -9,6 +9,7 @@ import styles from './FeedPostStyles'
 import Comment from "../Comment";
 import { IPost } from "../../types/models";
 import DoublePressable from '../DoublePressable';
+import Carousel from '../Carousel';
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
 // interface IFeedPost {
@@ -74,6 +75,18 @@ const FeedPost = ({post}: IFeedPost) =>{
       lastTap=now;
     }
 
+    let content=null;
+    if(post.image){
+      content=(<Image 
+          source={{
+            uri: post.image
+          }}
+          style={styles.image}
+          />)
+    }else if(post.images){
+      content=(<Carousel images={post.images}/>)
+    }
+
   return (
   
     <View style={styles.post}>
@@ -99,16 +112,10 @@ const FeedPost = ({post}: IFeedPost) =>{
 
       {/*content */}
         {/* <Pressable onPress={handleDoublePress}> */}
-
         {/* Here to pass everything between our DoublePressable component is through ReactNode children property which can 
         be passed to our custom component at props  */}
         <DoublePressable onDoublePress={toggleLike}>
-          <Image 
-          source={{
-            uri: post.image
-          }}
-          style={styles.image}
-          />
+          {content}
           </DoublePressable>
         {/* </Pressable> */}
       {/*Footer */}
