@@ -1,4 +1,4 @@
-import { View, Image, FlatList,useWindowDimensions } from 'react-native'
+import { View, Image, FlatList,useWindowDimensions,ViewabilityConfig,ViewToken } from 'react-native'
 import {useState,useRef} from 'react'
 import colors from '../../theme/colors';
 import DoublePressable from '../DoublePressable';
@@ -13,15 +13,18 @@ const Carousel = ({images,onDoublePress=()=>{}}:ICarousel) => {
 
     const {width}=useWindowDimensions()
     const [activeImageIndex,setActiveImageIndex]=useState(0);
-    const viewabilityConfig = {
+    const viewabilityConfig:  ViewabilityConfig= {
         itemVisiblePercentThreshold:40
     }
-    const onViewableItemsChanged = useRef((data)=>{
+    //If you don't know the type of something just navigate to that component like click on flatlist and search for onViewableItemsChanged
+    // and check the expected return type of it 
+    const onViewableItemsChanged = useRef((data : {viewableItems: Array<ViewToken>})=>{
         console.log(data)
         console.log('Testing',data.viewableItems[0].index)
         if(data.viewableItems.length>=0 && data.viewableItems.length<=1){
-            console.log('viewableItems ',data.viewableItems,' & viewableItems index : ')            
-        setActiveImageIndex(data.viewableItems[0].index )
+            console.log('viewableItems ',data.viewableItems,' & viewableItems index : ') 
+        // Here we are assigning 0 BY DEFAULT AS SOMETIMES IT COMES NULL BELOW 
+        setActiveImageIndex(data.viewableItems[0].index ||0)
         }
         else{
             console.log('else part : ',data)
