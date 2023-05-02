@@ -1,0 +1,1 @@
+{"version":"0.0.1","name":"Instagram","dependencies":{"eme-encryption-scheme-polyfill":{"version":"2.1.1"},"keymirror":{"version":"0.1.1"},"react-native-vector-icons":{"version":"9.2.0"},"react-native-vector-image":{"version":"0.4.1"},"react-native-video":{"version":"5.2.1"},"react-native":{"version":"0.71.7"},"react":{"version":"18.2.0"}}}

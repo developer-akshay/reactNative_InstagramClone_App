@@ -10,6 +10,7 @@ import Comment from "../Comment";
 import { IPost } from "../../types/models";
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
+import VideoPlayer from '../VideoPlayer';
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
 // interface IFeedPost {
@@ -89,6 +90,8 @@ const FeedPost = ({post}: IFeedPost) =>{
         </DoublePressable>)
     }else if(post.images){
       content=(<Carousel images={post.images} onDoublePress= {toggleLike}     />)
+    }else if(post.video){
+      content=(<VideoPlayer uri={post.video} onDoublePress= {toggleLike} /> )
     }
 
   return (
