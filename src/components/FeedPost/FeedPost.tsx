@@ -62,6 +62,7 @@ const FeedPost = ({post}: IFeedPost) =>{
     }
     const toggleLike = () => {
       setIsLiked(v=>!v)
+      console.log('clicked');
     } 
 
     //Function for liking post by double clicking at image
@@ -87,7 +88,7 @@ const FeedPost = ({post}: IFeedPost) =>{
           />
         </DoublePressable>)
     }else if(post.images){
-      content=(<Carousel images={post.images} toggleLike= {toggleLike}     />)
+      content=(<Carousel images={post.images} onDoublePress= {toggleLike}     />)
     }
 
   return (
