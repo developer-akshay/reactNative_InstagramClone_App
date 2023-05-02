@@ -77,14 +77,17 @@ const FeedPost = ({post}: IFeedPost) =>{
 
     let content=null;
     if(post.image){
-      content=(<Image 
+      content=(
+        <DoublePressable onDoublePress={toggleLike}>
+          <Image 
           source={{
             uri: post.image
           }}
           style={styles.image}
-          />)
+          />
+        </DoublePressable>)
     }else if(post.images){
-      content=(<Carousel images={post.images}/>)
+      content=(<Carousel images={post.images} toggleLike= {toggleLike}     />)
     }
 
   return (
@@ -114,9 +117,9 @@ const FeedPost = ({post}: IFeedPost) =>{
         {/* <Pressable onPress={handleDoublePress}> */}
         {/* Here to pass everything between our DoublePressable component is through ReactNode children property which can 
         be passed to our custom component at props  */}
-        <DoublePressable onDoublePress={toggleLike}>
+        
           {content}
-          </DoublePressable>
+          
         {/* </Pressable> */}
       {/*Footer */}
       <View style={styles.footer}>

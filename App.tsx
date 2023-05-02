@@ -33,9 +33,6 @@ import HomeScreen from "./src/screens/HomeScreen";
 
 
 const App = () =>{
-
-  
-  debugger
   return <View style={styles.app}>
     <SafeAreaView>
       <ScrollView>
