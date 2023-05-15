@@ -1,6 +1,6 @@
 import { StyleSheet, View,SafeAreaView,ScrollView, FlatList } from "react-native";
 import HomeScreen from "./src/screens/HomeScreen";
-
+import commentsScreen from "./src/screens/CommentsScreen";
 
 // const post={
 //   "id": "1",
@@ -34,11 +34,9 @@ import HomeScreen from "./src/screens/HomeScreen";
 
 const App = () =>{
   return <View style={styles.app}>
-    <SafeAreaView>
-      <ScrollView>
+ 
         <HomeScreen />
-      </ScrollView>
-    </SafeAreaView>
+
 
     
 

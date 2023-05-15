@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   const viewabilityConfig:  ViewabilityConfig= {
     // waitForInteraction: true,
-    itemVisiblePercentThreshold:40
+    itemVisiblePercentThreshold:31
   }
   const onViewableItemsChanged = useRef(
     (data : {viewableItems: Array<ViewToken>})=>{

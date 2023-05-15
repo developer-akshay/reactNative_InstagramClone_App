@@ -104,7 +104,7 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
     <View style={styles.post}>
       
       {/*Header */}
-
+    
         <View style={styles.header}>
           {/* avatar */}
           
