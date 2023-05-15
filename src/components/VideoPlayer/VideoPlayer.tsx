@@ -6,19 +6,22 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IVideoPlayer {
     uri: string;
-    onDoublePress?: () => void;
+    paused: boolean;
 }
 
-const VideoPlayer = ({uri,onDoublePress=()=>{}}:IVideoPlayer) => {
+const VideoPlayer = ({uri,paused}:IVideoPlayer) => {
   const {width}=useWindowDimensions();
   const [muted,setMuted]=useState(true)
+  debugger
   return (
     <View>
       <Video 
         source={{uri}} 
         style={styles.video} 
-        resizeMode='contain' 
-        repeat muted={muted}
+        resizeMode='cover'
+        repeat 
+        muted={muted}
+        paused={paused}
       />
       <Pressable onPress={()=>setMuted(v => !v)} style={styles.muteButton}>
         <Ionicons 
@@ -37,7 +40,7 @@ const styles= StyleSheet.create({
     aspectRatio:1
   },
   muteButton:{
-    backgroundColor:colors.lightgrey,
+    backgroundColor:colors.black,
     borderRadius:25,
     padding:5,
     position:'absolute',

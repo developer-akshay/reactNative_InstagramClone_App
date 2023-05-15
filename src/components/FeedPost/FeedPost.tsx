@@ -27,17 +27,18 @@ import VideoPlayer from '../VideoPlayer';
 //Here we are importing type from one generic page
 interface IFeedPost {
   post:IPost
+  isVisible: boolean;
 }
 
 // const FeedPost = (props) =>{
 // We can destruct props directly here if we have only props argument instead inside the feedpost functional component    
-const FeedPost = ({post}: IFeedPost) =>{
+const FeedPost = ({post,isVisible}: IFeedPost) =>{
     console.log('props',post);
-    
+    debugger
      //it will return array of two value bydefault we have given false so it will be 0
     // const state =useState(false)
     // const isDescriptionExpanded =state[0]
-    // isDescriptionExpanded=true  This is wrong way to change values 
+    // isDescriptionExpanded=true  This is wrong way to change values
 
     // WE SHOULD USE SETTER function to change state of variables like this
     const [isDescriptionExpanded,setIsDescriptionExpanded] = useState(false);
@@ -91,7 +92,11 @@ const FeedPost = ({post}: IFeedPost) =>{
     }else if(post.images){
       content=(<Carousel images={post.images} onDoublePress= {toggleLike}     />)
     }else if(post.video){
-      content=(<VideoPlayer uri={post.video} onDoublePress= {toggleLike} /> )
+      content=(
+        <DoublePressable onDoublePress={toggleLike}>
+          <VideoPlayer uri={post.video} paused={!isVisible} />
+        </DoublePressable>
+       )
     }
 
   return (
