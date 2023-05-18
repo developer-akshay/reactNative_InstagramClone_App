@@ -54,19 +54,23 @@ const CustomInput =
         control={control} // type
         name={name} //name of the field we are rendering rn
         //Here we gonna put our custom input inside render function to render diff fields
-        render = {({field: {onChange,value,onBlur} }) => (
-            <View style={styles.inputContainer} >
-                <Text style={styles.label}>{label}</Text>
-                <TextInput
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                style={styles.input} 
-                placeholder='Hello' 
-                multiline={multiline}
-                />
-            </View>
-        )
+        rules={{required:true}}
+        render = {({field: {onChange,value,onBlur}, fieldState: {error} }) =>{
+            console.log('error at render function ',error)
+            return (
+                <View style={styles.inputContainer} >
+                    <Text style={styles.label}>{label}</Text>
+                    <TextInput
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    style={styles.input} 
+                    placeholder='Hello' 
+                    multiline={multiline}
+                    />
+                </View>
+            )
+        } 
     }
     />  
 )
@@ -77,11 +81,16 @@ const EditProfileScreen = () => {
 //will help use to bind one input to a value that which is gonna be managed by useForm
     // Here it's expecting a type for useForm data after this we need to provide 
     // type for control also 
-    const {control,handleSubmit} = useForm<IUser>();
+    //To get error we can distructure formState here or 
+    // we can directly  use fieldState at render function
+    const {control,handleSubmit, formState:{errors}} = useForm<IUser>();
 
     const onSubmit = (data:IEditableUser) =>{
         console.log('data',data)
     }
+
+    console.log('Errors :',errors)
+
   return (
     <View style={styles.page}>
         <Image source={{ uri :  user.image}} style={styles.avatar} />
