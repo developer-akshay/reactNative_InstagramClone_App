@@ -6,10 +6,38 @@ import colors from '../../theme/colors'
 import fonts from '../../theme/fonts'
 import { IUser } from '../../types/models'
 
+// To Avoid error "circular references itself in mapped type" we are making different 
+// type similar to IUser but not including IPost as IUser type is also used at IPOST
+
+// There are two ways to do it 
+
+// 1. this is the first way where we directly create new type 
+
+// type IEditableUser ={
+//     username: string;
+//     name?: string;
+//     bio?: string;
+//     website?: string;
+//   }
+
+// 2.suppose if one of ur team member changes bio from optional to mandatory at one 
+// part and forgot to mention it at above way so there's a PICK property provided at ts
+// so that you can pick only those values from existing interface
+
+type IEditableUserField = 'username' | 'name' | 'website' | 'bio';
+
+type IEditableUser =Pick<IUser, IEditableUserField >
+//You can also do sdirectly like this
+// type IEditableUser =Pick<IUser, 'username' | 'name' | 'website' | 'bio' >
+
+
+ 
 interface ICustomInput {
-    control:Control;
+    // we need to specify here also the type of control so that control which is 
+    // performing the binding between feild and form hook knows the type
+    control:Control<IUser,object>;
     label: string;
-    name:string;
+    name:IEditableUserField; 
     multiline?: boolean;
 }
 
@@ -47,9 +75,11 @@ const EditProfileScreen = () => {
 
 //1. control field :
 //will help use to bind one input to a value that which is gonna be managed by useForm
-    const {control,handleSubmit} = useForm();
+    // Here it's expecting a type for useForm data after this we need to provide 
+    // type for control also 
+    const {control,handleSubmit} = useForm<IUser>();
 
-    const onSubmit = (data) =>{
+    const onSubmit = (data:IEditableUser) =>{
         console.log('data',data)
     }
   return (
