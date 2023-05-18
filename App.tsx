@@ -2,6 +2,7 @@ import { StyleSheet, View,SafeAreaView,ScrollView, FlatList } from "react-native
 import HomeScreen from "./src/screens/HomeScreen";
 import CommentsScreen from "./src/screens/CommentsScreen/CommentsScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import EditProfileScreen from "./src/screens/EditProfileScreen";
 // const post={
 //   "id": "1",
 //   "createdAt": "24 April, 2023",
@@ -33,12 +34,13 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 
 
 const App = () =>{
-  debugger
+  
   return( 
     <View style={styles.app}>
           {/* <HomeScreen /> */}
           {/* <CommentsScreen /> */}
-          <ProfileScreen />
+          {/* <ProfileScreen /> */}
+          <EditProfileScreen />
     </View>
   )
 }
