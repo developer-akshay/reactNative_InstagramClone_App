@@ -1,10 +1,11 @@
 import { View, Text,StyleSheet,Image, TextInput } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import { useForm , Controller, Control} from 'react-hook-form'
 import user from '../../assets/data/user.json'
 import colors from '../../theme/colors'
 import fonts from '../../theme/fonts'
 import { IUser } from '../../types/models'
+import { launchImageLibrary } from 'react-native-image-picker'
 
 // To Avoid error "circular references itself in mapped type" we are making different 
 // type similar to IUser but not including IPost as IUser type is also used at IPOST
@@ -36,7 +37,7 @@ const URL_REGEX=
 interface ICustomInput {
     // we need to specify here also the type of control so that control which is 
     // performing the binding between feild and form hook knows the type
-    control:Control<IUser,object>;
+    control:Control<IEditableUser,object>;
     label: string;
     name:IEditableUserField; 
     multiline?: boolean;
@@ -89,6 +90,7 @@ const CustomInput =
 
 const EditProfileScreen = () => {
 
+    const [selectedPhoto,setSelectedPhoto]=useState<null | Asset>(null);
 //1. control field :
 //will help use to bind one input to a value that which is gonna be managed by useForm
     // Here it's expecting a type for useForm data after this we need to provide 
@@ -113,12 +115,24 @@ const EditProfileScreen = () => {
         console.log('data',data)
     }
 
+    const onChangePhoto = () =>{
+        launchImageLibrary(
+            {mediaType:'photo'},
+            ({didCancel,errorCode,errorMessage,assets})=>{
+            if(!didCancel && !errorCode && assets && assets.length>0){
+                setSelectedPhoto(assets[0]);
+            }
+        })
+    }
+
     console.log('Errors :',errors)
 
   return (
     <View style={styles.page}>
-        <Image source={{ uri :  user.image}} style={styles.avatar} />
-        <Text style={styles.textButton} >Change Profile Photo</Text>
+        <Image source={{ uri :  selectedPhoto?.uri || user.image}} style={styles.avatar} />
+        <Text 
+        onPress={onChangePhoto}
+        style={styles.textButton}>Change Profile Photo</Text>
         <CustomInput 
         name={'name'} 
         label={'Name'} 
