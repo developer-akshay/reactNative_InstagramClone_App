@@ -73,7 +73,7 @@ const CustomInput =
                             styles.input,
                             {borderColor:error?colors.error:colors.border}
                         ]} 
-                        placeholder='Hello' 
+                        placeholder='Please input details' 
                         multiline={multiline}
                         />
                         {error && 
