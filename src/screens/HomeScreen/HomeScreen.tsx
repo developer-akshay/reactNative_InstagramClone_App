@@ -6,9 +6,9 @@ import FeedPost from '../../components/FeedPost/FeedPost'
 
 
 const HomeScreen = () => {
-
+  
   const [activePostId,setActivePostId]=useState <string|null> (null);
-
+  
 
   const viewabilityConfig:  ViewabilityConfig= {
     // waitForInteraction: true,
@@ -20,11 +20,11 @@ const HomeScreen = () => {
     if(data.viewableItems.length > 0 ) {
       
       setActivePostId(data.viewableItems[0].item.id);
-      console.log('activePostId : ',activePostId)
+      // console.log('activePostId : ',activePostId)
       
     }
   })
-  console.log(onViewableItemsChanged.current, 'curent');
+  // console.log(onViewableItemsChanged.current, 'curent');
   return (
     //  if the array is of short length then only we use map otherwise we will have different approach Flatlist
     //  {posts.map(postArr=>(
@@ -46,7 +46,8 @@ const HomeScreen = () => {
     keyExtractor={item => item.id}
     renderItem={
       ({item})=> (
-        console.log('activePostId : ',activePostId,' item.id : ',item.id),
+        // console.log('activePostId : ',activePostId,' item.id : ',item.id),
+        
       <FeedPost post={item} isVisible={activePostId === item.id}/> 
     )}
     showsVerticalScrollIndicator={false}

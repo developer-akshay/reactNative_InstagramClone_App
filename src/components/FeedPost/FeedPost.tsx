@@ -11,6 +11,9 @@ import { IPost } from "../../types/models";
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
+//Instead of getting props from homescreen and sending that props.naigation
+// at feedpost like post and all we will use HOOKS for that we will use useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
 // interface IFeedPost {
@@ -33,8 +36,6 @@ interface IFeedPost {
 // const FeedPost = (props) =>{
 // We can destruct props directly here if we have only props argument instead inside the feedpost functional component    
 const FeedPost = ({post,isVisible}: IFeedPost) =>{
-    console.log('props',post);
-    debugger
      //it will return array of two value bydefault we have given false so it will be 0
     // const state =useState(false)
     // const isDescriptionExpanded =state[0]
@@ -43,6 +44,7 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
     // WE SHOULD USE SETTER function to change state of variables like this
     const [isDescriptionExpanded,setIsDescriptionExpanded] = useState(false);
     const [isLiked,setIsLiked] = useState(false);
+    const navigation = useNavigation();
 
     const toggleDescriptionExpanded = () =>{
       //It's WRONG WAY
@@ -76,6 +78,10 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
         toggleLike()
       }
       lastTap=now;
+    }
+
+    const navigateToUser = () =>{
+      navigation.navigate('userProfile', {userId: post.user.id})
     }
 
     let content=null;
@@ -116,7 +122,7 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
           />
           
           {/* Name */}
-          <Text style={styles.userName}>{post.user.username}</Text>
+          <Text style={styles.userName} onPress={navigateToUser}>{post.user.username}</Text>
           
           {/* ḍots option feature */}
           <Entypo name='dots-three-horizontal' size={16} style={styles.threeDots} />
