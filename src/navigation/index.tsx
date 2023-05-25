@@ -18,7 +18,11 @@ const Navigation = () => {
         screenOptions={{headerShown:true}}
         >
             {/* we are nesting navigator here  */}
-            <Stack.Screen name='Home' component={BottomTabNavigator} options={{headerShown:false}}/>
+            <Stack.Screen 
+            name='Home' 
+            component={BottomTabNavigator} 
+            options={{headerShown:false}}
+            />
             {/* we use stack group to pass common propeties to the group other 
             then the left screen it will also recive screenOptions*/}
             {/* <Stack.Group screenOptions={{}}> */}
@@ -43,13 +47,6 @@ const Navigation = () => {
   )
 }
 
-const HeaderTitle = () => {
-    return <Image 
-    source={logo} 
-    resizeMode='contain'
-    style={{width:120, height:50}} 
-    />;
 
-}
 
 export default Navigation;

@@ -7,6 +7,7 @@ import PostUploadScreen from "../screens/PostUploadScreen/PostUploadScreen";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from "../theme/colors";
+import HomeStackNavigator from "./HomeStackNavigator";
 
 const Tab=createBottomTabNavigator(); 
 
@@ -14,16 +15,17 @@ const BottomTabNavigator = () => {
 
   return (
     <Tab.Navigator 
-    initialRouteName="Feed" 
+    initialRouteName="HomeStack" 
     screenOptions={{
         tabBarShowLabel:false,
         tabBarActiveTintColor:colors.black
         }}
     >
         <Tab.Screen
-        name="Feed"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStackNavigator}
         options={{
+            headerShown:false,
             tabBarIcon:({color,size}) => (
                 <MaterialIcons 
                 name= "home-filled"
