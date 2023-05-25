@@ -10,10 +10,10 @@ import FeedGridView from '../../components/FeedGridView/FeedGridView';
 const ProfileScreen = () => {
     const route = useRoute();
     const navigation =useNavigation();
-    const {userId}=route.params
+    const userId=route.params?.userId
 
     // query the user with userId
-    
+
 
     //by calling it we are updateing the navigating option
     // navigation.setOptions({title:user.username})
