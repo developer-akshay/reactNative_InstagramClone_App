@@ -6,6 +6,7 @@ import React from 'react'
 import { Text, View,Image } from "react-native";
 import logo from '../assets/images/logo.png';
 import BottomTabNavigator from "./BottomTabNavigator";
+import CommentsScreen from "../screens/CommentsScreen/CommentsScreen";
 
 // this will create stak navigator which will return a object with navigator and screen
 const Stack =createNativeStackNavigator(); // return object with {Navigator,Screen}
@@ -36,9 +37,9 @@ const Navigation = () => {
 
             {/* we use title option to override the name  */}
             <Stack.Screen 
-            name="userProfile" 
-            component={ProfileScreen} 
-            options={{title: "Profile"}} 
+            name="Comment" 
+            component={CommentsScreen} 
+            options={{title: "Comment at post"}} 
             />
             {/* </Stack.Group> */}
             

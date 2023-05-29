@@ -107,7 +107,6 @@ const EditProfileScreen = () => {
             username:user.username,
             website:user.website,
             bio:user.bio,
-
         }
     });
 
