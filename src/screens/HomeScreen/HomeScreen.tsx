@@ -16,7 +16,7 @@ const HomeScreen = () => {
   }
   const onViewableItemsChanged = useRef(
     (data : {viewableItems: Array<ViewToken>})=>{
-      debugger
+    
     if(data.viewableItems.length > 0 ) {
       
       setActivePostId(data.viewableItems[0].item.id);

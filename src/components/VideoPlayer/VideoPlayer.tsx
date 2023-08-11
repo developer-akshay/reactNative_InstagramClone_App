@@ -12,7 +12,6 @@ interface IVideoPlayer {
 const VideoPlayer = ({uri,paused}:IVideoPlayer) => {
   const {width}=useWindowDimensions();
   const [muted,setMuted]=useState(true)
-  debugger
   return (
     <View>
       <Video 

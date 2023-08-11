@@ -26,7 +26,7 @@ const Carousel = ({images,onDoublePress=()=>{}}:ICarousel) => {
         // Here we are assigning 0 BY DEFAULT AS SOMETIMES IT COMES NULL BELOW 
         setActiveImageIndex(data.viewableItems[0].index ||0)
         console.log('changed to : ',activeImageIndex)
-        debugger
+    
         }
         else{
             console.log('else part : ',data)
