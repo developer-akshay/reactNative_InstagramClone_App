@@ -7,9 +7,12 @@ import { Text, View,Image } from "react-native";
 import logo from '../assets/images/logo.png';
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommentsScreen from "../screens/CommentsScreen/CommentsScreen";
+import { RootNavigatorParamList } from "./types";
+
+
 
 // this will create stak navigator which will return a object with navigator and screen
-const Stack =createNativeStackNavigator(); // return object with {Navigator,Screen}
+const Stack =createNativeStackNavigator<RootNavigatorParamList>(); // return object with {Navigator,Screen}
 
 const Navigation = () => {
   return (
