@@ -8,6 +8,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from "../theme/colors";
 import HomeStackNavigator from "./HomeStackNavigator";
+import ProfileStackNavigator from "./ProfileStackNavigator";
 
 const Tab=createBottomTabNavigator(); 
 
@@ -77,8 +78,9 @@ const BottomTabNavigator = () => {
 
         <Tab.Screen
         name="MyProfile"
-        component={ProfileScreen}
+        component={ProfileStackNavigator}
         options={{
+            headerShown:false,
             tabBarIcon:({color,size}) => (
                 <MaterialCommunityIcons
                 name= "account-circle"
