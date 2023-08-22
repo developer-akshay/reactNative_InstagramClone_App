@@ -14,6 +14,8 @@ import VideoPlayer from '../VideoPlayer';
 //Instead of getting props from homescreen and sending that props.naigation
 // at feedpost like post and all we will use HOOKS for that we will use useNavigation
 import { useNavigation } from '@react-navigation/native';
+import {FeedNavigationProp} from '../../navigation/types';
+
 
 // if you want to give type to props at same page then below is the way, Here we will provide types at one file which can be used by multiple Component
 // interface IFeedPost {
@@ -44,7 +46,7 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
     // WE SHOULD USE SETTER function to change state of variables like this
     const [isDescriptionExpanded,setIsDescriptionExpanded] = useState(false);
     const [isLiked,setIsLiked] = useState(false);
-    const navigation = useNavigation();
+    const navigation = useNavigation<FeedNavigationProp>();
 
     const toggleDescriptionExpanded = () =>{
       //It's WRONG WAY
@@ -81,7 +83,7 @@ const FeedPost = ({post,isVisible}: IFeedPost) =>{
     }
 
     const navigateToUser = () =>{
-      navigation.navigate('userProfile')
+      navigation.navigate('userProfile', {userId:post.user.id})
     }
 
     const navigateToComments = () =>{
