@@ -21,9 +21,9 @@ const ProfileScreen = () => {
     UserProfileNavigationProp | MyProfileNavigationProp
     >();
     const userId=route.params?.userId
-
+    console.log('userid :::::',route.params)
     // query the user with userId
-
+    console.warn('userId ::: ', userId)
 
     //by calling it we are updateing the navigating option
     // navigation.setOptions({title:user.username})

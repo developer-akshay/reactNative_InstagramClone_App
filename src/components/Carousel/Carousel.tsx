@@ -19,18 +19,18 @@ const Carousel = ({images,onDoublePress=()=>{}}:ICarousel) => {
     //If you don't know the type of something just navigate to that component like click on flatlist and search for onViewableItemsChanged
     // and check the expected return type of it 
     const onViewableItemsChanged = useRef((data : {viewableItems: Array<ViewToken>})=>{
-        console.log(data)
-        console.log('Testing',data.viewableItems[0].index)
+        // console.log(data)
+        // console.log('Testing',data.viewableItems[0].index)
         if(data.viewableItems.length>=0 && data.viewableItems.length<=1){
-            console.log('viewableItems ',data.viewableItems,' & viewableItems index : ') 
+            // console.log('viewableItems ',data.viewableItems,' & viewableItems index : ') 
         // Here we are assigning 0 BY DEFAULT AS SOMETIMES IT COMES NULL BELOW 
         setActiveImageIndex(data.viewableItems[0].index ||0)
-        console.log('changed to : ',activeImageIndex)
+        // console.log('changed to : ',activeImageIndex)
     
         }
-        else{
-            console.log('else part : ',data)
-        }
+        // else{
+        //     console.log('else part : ',data)
+        // }
     })
 
     return (

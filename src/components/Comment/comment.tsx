@@ -11,7 +11,7 @@ interface ICommentProps {
 }
 
 const comment = ({comment,includeDetails = false} : ICommentProps) => {
-  console.log('commnets at comment component : ',comment)
+  // console.log('commnets at comment component : ',comment)
 
   const [isLiked,setIsLiked]=useState(false)
   const toggleLike=()=>{
