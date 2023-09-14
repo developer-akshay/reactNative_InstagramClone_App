@@ -9,6 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import colors from "../theme/colors";
 import HomeStackNavigator from "./HomeStackNavigator";
 import ProfileStackNavigator from "./ProfileStackNavigator";
+import SearchTabNavigator from "./SearchTabNavigator";
 import { BottomTabNavigatorParamList } from "./types";
 
 const Tab=createBottomTabNavigator<BottomTabNavigatorParamList>(); 
@@ -39,8 +40,9 @@ const BottomTabNavigator = () => {
 
         <Tab.Screen
         name="Search"
-        component={ProfileScreen}
+        component={SearchTabNavigator}
         options={{
+            headerShown:false,
             tabBarIcon:({color,size}) => (
                 <MaterialIcons 
                 name= "search"

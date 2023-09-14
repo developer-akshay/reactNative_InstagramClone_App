@@ -5,6 +5,9 @@
 // import EditProfileScreen from "./src/screens/EditProfileScreen";
 // import PostUploadScreen from "./src/screens/PostUploadScreen";
 import Navigation from "./src/navigation";
+import {
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
 //this navigationContainer is imp and must be at the top it's used to wrap all
 // navigators inside it
@@ -17,7 +20,11 @@ import { NavigationContainer } from "@react-navigation/native";
           {/* <CommentsScreen /> */}
 
 const App = () =>{
-  return <Navigation />;
+  return (
+    <SafeAreaProvider>
+      <Navigation />
+    </SafeAreaProvider>
+  )
 }
 
 
